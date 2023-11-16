@@ -3,6 +3,8 @@ import { QuizList } from "./_components/quiz-list";
 import { Suspense } from "react";
 import { LoadingUi } from "./_components/ui/icons/list-loading-ui";
 
+export const dynamic = 'force-dynamic'
+
 export default  function HomePage() {
   return (
     <main className="px-6">

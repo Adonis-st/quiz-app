@@ -6,6 +6,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 interface Props {
   params: { token: string };
 }
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(
   { params }: Props,
