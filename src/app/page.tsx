@@ -1,7 +1,7 @@
 import { Nav } from "./_components/nav";
 import { QuizList } from "./_components/quiz-list";
 import { Suspense } from "react";
-import { LoadingUi } from "./_components/list-loading-ui";
+import { LoadingUi } from "./_components/ui/icons/list-loading-ui";
 
 export default  function HomePage() {
   return (

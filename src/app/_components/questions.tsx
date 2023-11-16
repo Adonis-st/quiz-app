@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { numberToLetter } from "~/utils";
-import { ErrorIcon, SuccessIcon } from "./ui";
+import { ErrorIcon, SuccessIcon } from "./ui/icons";
 import type { Option } from "~/types";
 
 interface Props {
@@ -44,6 +44,10 @@ export const Questions = ({ questions, quiz }: Props) => {
     setIsAnswerSelectedError(false);
   };
 
+  const userTotal = (answers: number[]) => {
+    return answers.reduce((acc, current) => acc + current, 0);
+  };
+
   const handleDisplayIcons = (option: Option) => {
     if (
       answerSelected &&
@@ -55,9 +59,6 @@ export const Questions = ({ questions, quiz }: Props) => {
       return <ErrorIcon />;
     }
   };
-
-  const userTotal = (answers: number[]) =>
-    answers.reduce((acc, current) => acc + current, 0);
 
   const handleOptionsStates = (optionsId: number, type: "border" | "label") => {
     if (seletedOption?.id === optionsId && answerSelected === "correct") {
@@ -111,14 +112,14 @@ export const Questions = ({ questions, quiz }: Props) => {
     <div>
       {isQuizDone && (
         <>
-          <h3 className="text-dark_navy text-[40px] font-light">
+          <h3 className="text-[40px] font-light text-dark_navy">
             Quiz completed <span className="font-medium">You Scored...</span>
           </h3>
 
-          <div className="bg-white p-8  text-center shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)]">
+          <div className="mt-10 rounded-xl bg-white p-8  text-center shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)]">
             <div className="flex items-center justify-center">
               <div
-                className=" flex h-10 w-10 items-center justify-center rounded-md bg-opacity-90"
+                className=" flex h-10 w-10 items-center justify-center rounded-md bg-opacity-90 "
                 style={{
                   backgroundColor: quiz?.iconColor
                     ? quiz.iconColor
@@ -133,16 +134,16 @@ export const Questions = ({ questions, quiz }: Props) => {
                   />
                 )}
               </div>
-              <h4 className="text-dark_navy ml-4 text-[18px] font-medium">
+              <h4 className="ml-4 text-[18px] font-medium text-dark_navy">
                 {quiz.name}
               </h4>
             </div>
 
-            <div className="text-dark_navy text-[88px] font-medium">
+            <div className="text-[88px] font-medium text-dark_navy">
               {userTotal(userAnswers)}
             </div>
 
-            <div className="text-grey_navy text-[18px] ">
+            <div className="text-[18px] text-grey_navy ">
               out of {questions?.length}
             </div>
           </div>
@@ -150,7 +151,7 @@ export const Questions = ({ questions, quiz }: Props) => {
           {
             <button
               onClick={handlePlayAgain}
-              className="bg-purple mt-3 h-14 w-full rounded-xl text-white  shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)]"
+              className="mt-3 h-14 w-full rounded-xl bg-purple text-white  shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)]"
             >
               Play Again
             </button>
@@ -162,12 +163,12 @@ export const Questions = ({ questions, quiz }: Props) => {
           <h3 className="text-gray_navy text-[14px] italic">
             Question {currentQuestion} of {questions?.length}
           </h3>
-          <p className="text-grey_navy mt-3 text-[14px] italic">
+          <p className="mt-3 text-[14px] italic text-grey_navy">
             {questions?.[currentQuestion - 1]?.name}
           </p>
           <div className="mt-6 h-4 w-full rounded-full bg-slate-100 p-1">
             <div
-              className="bg-purple h-2 rounded-full"
+              className="h-2 rounded-full bg-purple"
               style={{
                 width: `${
                   (currentQuestion /
@@ -197,7 +198,7 @@ export const Questions = ({ questions, quiz }: Props) => {
                   >
                     {numberToLetter(index)}
                   </div>
-                  <span className="text-dark_navy text-left text-[18px] font-medium">
+                  <span className="text-left text-[18px] font-medium text-dark_navy">
                     {option.name}
                   </span>
                   <div className="ml-auto">{handleDisplayIcons(option)}</div>
@@ -210,12 +211,12 @@ export const Questions = ({ questions, quiz }: Props) => {
                   ? () => handleNextQuestion()
                   : () => handleSubmit()
               }
-              className="bg-purple mt-3 h-14 w-full rounded-xl text-white  shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)]"
+              className="mt-3 h-14 w-full rounded-xl bg-purple text-white  shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)]"
             >
               {answerSelected ? "Next Question" : "Submit Answer"}
             </button>
 
-            <div className="text-error mt-2 text-center text-[18px]">
+            <div className="mt-2 text-center text-[18px] text-error">
               {isAnswerSelectedError && "Please select an answer"}
             </div>
           </div>

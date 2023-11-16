@@ -1,14 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { NoonIcon, SunnyIcon } from "./ui";
+import { NoonIcon, SunnyIcon } from "./ui/icons";
+import { ThemeSwitcher } from "./theme-switcher";
 
 interface Props {
   quizData?: {
     name: string | undefined;
     iconColor: string | null | undefined;
     iconUrl: string | null | undefined;
-  }
+  };
 }
 
 export const Nav = ({ quizData }: Props) => {
@@ -33,7 +32,7 @@ export const Nav = ({ quizData }: Props) => {
               />
             )}
           </Link>
-          <h1 className="text-dark_navy ml-4 text-[18px] font-medium">
+          <h1 className="ml-4 text-[18px] font-medium text-dark_navy">
             {quizData.name}
           </h1>
         </div>
@@ -41,9 +40,7 @@ export const Nav = ({ quizData }: Props) => {
 
       <div className="flex items-center justify-end">
         <SunnyIcon />
-        <button className="bg-purple mx-2 flex h-5 w-8 items-center rounded-full p-1">
-          <div className="h-3 w-3 rounded-full bg-white" />
-        </button>
+        <ThemeSwitcher />
         <NoonIcon />
       </div>
     </nav>

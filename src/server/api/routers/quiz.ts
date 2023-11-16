@@ -1,15 +1,9 @@
-import { sql } from "drizzle-orm";
 import { z } from "zod";
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const quizRouter = createTRPCRouter({
   getQuizzes: publicProcedure.query(async ({ ctx }) => {
     // await new Promise((resolve) => setTimeout(resolve, 10000));
-
     const getQuizzes = ctx.db.query.quizzes
       .findMany({
         columns: { name: true, token: true, iconUrl: true, iconColor: true },
@@ -23,7 +17,7 @@ export const quizRouter = createTRPCRouter({
   getQuiz: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
     const quiz = ctx.db.query.quizzes
       .findFirst({
-        where: (quizzes, { eq }) => eq(quizzes.token, sql.placeholder("token")),
+        where: (quizzes, { eq }) => eq(quizzes.token, input),
         columns: { name: true, token: true, iconUrl: true, iconColor: true },
         with: {
           questions: {
@@ -35,6 +29,6 @@ export const quizRouter = createTRPCRouter({
       })
       .prepare();
 
-    return quiz.execute({ token: input });
+    return quiz.execute();
   }),
 });
