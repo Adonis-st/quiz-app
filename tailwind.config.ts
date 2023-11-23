@@ -16,6 +16,9 @@ export default {
         success: "#26D782",
         error: "#EE5454",
       },
+      screens: {
+        xl: '1440px'
+      },
     },
   },
   plugins: [],

@@ -18,9 +18,9 @@ export const ThemeSwitcher = () => {
   return (
     <button
       onClick={() => setDarkMode((prevMode) => !prevMode)}
-      className="mx-2 flex h-5 w-8 items-center rounded-full bg-purple p-1"
+      className="mx-2 flex h-5 w-8 items-center rounded-full bg-purple p-1 md:mx-4 md:h-8 md:w-12"
     >
-      <div className="h-3 w-3 rounded-full bg-white dark:translate-x-3 ease-in-out duration-200" />
+      <div className="aspect-square w-3 rounded-full bg-white duration-200 ease-in-out dark:translate-x-3 md:w-5 md:dark:translate-x-5" />
     </button>
   );
 };

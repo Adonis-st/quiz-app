@@ -1,22 +1,31 @@
 import { Nav } from "~/app/_components/nav";
 import { Questions } from "~/app/_components/questions";
 import { api } from "~/trpc/server";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
 interface Props {
   params: { token: string };
 }
-export const dynamic = 'force-dynamic'
 
-export async function generateMetadata(
-  { params }: Props,
-): Promise<Metadata> {
-  const quiz = await api.quiz.getQuiz.query(params.token);
-  return { title: quiz?.name };
+export const dynamic = "force-dynamic";
+
+const getQuiz = async (token: string) => {
+  const quiz = await api.quiz.getQuiz.query(token);
+
+  if (!quiz) {
+    throw new Error("No data");
+  }
+
+  return quiz;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const quiz = await getQuiz(params.token);
+  return { title: quiz?.name, icons: [{ rel: "icon", url: quiz?.iconUrl }] };
 }
 
 export default async function QuizPage({ params }: Props) {
-  const quiz = await api.quiz.getQuiz.query(params.token);
+  const quiz = await getQuiz(params.token);
 
   const quizData = {
     name: quiz?.name,
@@ -25,10 +34,9 @@ export default async function QuizPage({ params }: Props) {
   };
 
   return (
-    <main className="px-6">
+    <>
       <Nav quizData={quizData} />
-
       <Questions questions={quiz?.questions} quiz={quizData} />
-    </main>
+    </>
   );
 }

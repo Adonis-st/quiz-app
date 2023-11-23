@@ -20,8 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${rubik.className} bg-[url(/images/pattern-background-mobile-light.svg)] bg-ligh_grey dark:bg-[url(/images/pattern-background-mobile-dark.svg)] dark:bg-dark_navy`}>
-        <TRPCReactProvider headers={headers()}>{children}</TRPCReactProvider>
+      <body
+        className={`${rubik.className} bg-ligh_grey bg-[url(/images/pattern-background-mobile-light.svg)] dark:bg-dark_navy dark:bg-[url(/images/pattern-background-mobile-dark.svg)] md:bg-[url(/images/pattern-background-tablet-light.svg)] md:dark:bg-[url(/images/pattern-background-tablet-dark.svg)] xl:bg-[url(/images/pattern-background-desktop-light.svg)] xl:dark:bg-[url(/images/pattern-background-desktop-dark.svg)]`}
+      >
+        <TRPCReactProvider headers={headers()}>
+          <main className="px-6 md:px-16">{children}</main>
+        </TRPCReactProvider>
       </body>
     </html>
   );
