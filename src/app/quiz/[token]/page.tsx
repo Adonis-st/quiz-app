@@ -21,7 +21,8 @@ const getQuiz = async (token: string) => {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const quiz = await getQuiz(params.token);
-  return { title: quiz?.name, icons: [{ rel: "icon", url: quiz?.iconUrl }] };
+  const iconUrl = quiz.iconUrl as unknown as string;
+  return { title: quiz?.name, icons: [{ rel: "icon", url: iconUrl }] };
 }
 
 export default async function QuizPage({ params }: Props) {

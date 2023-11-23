@@ -113,13 +113,13 @@ export const Questions = ({ questions, quiz }: Props) => {
     <div className="mt-6 xl:mx-auto xl:mt-[85px] xl:flex xl:w-[1160px] xl:justify-between">
       {isQuizDone && (
         <>
-          <h3 className="text-[40px] font-light text-dark_navy md:text-[64px]">
+          <h3 className="text-[40px] font-light text-dark_navy md:text-[64px] dark:text-white">
             Quiz completed{" "}
             <span className="font-medium md:block">You Scored...</span>
           </h3>
 
           <div>
-            <div className="mt-10 rounded-xl bg-white p-8 text-center shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)] md:mt-16 md:h-[388px] md:rounded-3xl md:p-12 xl:w-[564px]">
+            <div className="mt-10 rounded-xl bg-white p-8 text-center shadow-[0px_16px_40px_0px_rgba(143,_160,_193,_.14)] md:mt-16 md:h-[388px] md:rounded-3xl md:p-12 xl:w-[564px] dark:bg-navy xl:mt-0">
               <div className="flex items-center justify-center">
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-md bg-opacity-90 md:h-14 md:w-14 "
@@ -137,16 +137,16 @@ export const Questions = ({ questions, quiz }: Props) => {
                     />
                   )}
                 </div>
-                <h4 className="ml-4 text-[18px] font-medium text-dark_navy md:ml-6 md:text-[28px] ">
+                <h4 className="ml-4 text-[18px] font-medium text-dark_navy md:ml-6 md:text-[28px] dark:text-white">
                   {quiz.name}
                 </h4>
               </div>
 
-              <div className="text-[88px] font-medium text-dark_navy md:text-[144px]">
+              <div className="text-[88px] font-medium text-dark_navy md:text-[144px] dark:text-white">
                 {userTotal(userAnswers)}
               </div>
 
-              <div className="text-[18px] text-grey_navy md:text-[24px]">
+              <div className="text-[18px] text-grey_navy md:text-[24px] dark:text-light_bluish">
                 out of {questions?.length}
               </div>
             </div>

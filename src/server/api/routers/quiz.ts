@@ -3,7 +3,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const quizRouter = createTRPCRouter({
   getQuizzes: publicProcedure.query(async ({ ctx }) => {
-    await new Promise((resolve) => setTimeout(resolve, 10000));
+    // await new Promise((resolve) => setTimeout(resolve, 10000));
     const getQuizzes = ctx.db.query.quizzes
       .findMany({
         columns: { name: true, token: true, iconUrl: true, iconColor: true },
