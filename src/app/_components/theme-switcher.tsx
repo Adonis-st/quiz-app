@@ -1,13 +1,13 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { darkModeAtom } from "~/store";
 
 export const ThemeSwitcher = () => {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
     } else {
